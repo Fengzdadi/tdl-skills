@@ -2,10 +2,14 @@
 
 Codex skill for operating the [`tdl`](https://docs.iyear.me/tdl/) Telegram Downloader CLI.
 
+- tdl repository: https://github.com/iyear/tdl
+- tdl documentation: https://docs.iyear.me/tdl/
+
 ## Skill
 
 - `skills/tdl`: top-level tdl router
 - `skills/tdl/references/download.md`: download, archive, export-first, resume, filters, ranges, topics/replies, templates, progress, and failure recovery
+- `skills/tdl/references/export.md`: export-only message/user workflows, filters, ranges, topics/replies, output safety, and result reporting
 - `skills/tdl/references/auth-and-runtime.md`: install, login, namespaces, proxy, storage, Docker, and runtime guidance
 
 ## Usage
