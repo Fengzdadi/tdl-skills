@@ -225,18 +225,14 @@ For tdl export JSON, count messages with `.messages | length` when `jq` is avail
 
 ## Failure Recovery
 
-- Auth/session failure: run an interactive login method from `references/auth-and-runtime.md`; do not collect credentials in chat.
-- Protected link direct download failed: export the chat/messages first, then use `tdl dl -f`.
+For command failures, classify with `troubleshooting.md` before retrying.
+
+Download-specific defaults:
+
 - Interrupted download: rerun the same source and destination with `--continue`.
-- Clean retry: use `--restart` only after confirming the user wants to restart task state.
-- Flood wait/rate limiting: reduce `-t` and `-l`, add `--delay`, consider `--takeout` for large media exports, or retry later.
-- Proxy timeout/no response: verify proxy URL, include `--proxy` on every command, consider `--reconnect-timeout`, and retry.
-- SOCKS proxy connection refused: treat errors like `socks connect ... connection refused` as a local proxy availability/port problem, not a Telegram auth problem.
-- Invalid topic/reply ID: ask for the topic/post link, inspect IDs if possible, then export again.
-- Storage lock: if tdl reports "Current database is used by another process", wait for the other tdl command to finish or use a separate namespace/storage intentionally.
+- Clean retry: use `--restart` only after confirming the user wants to discard task state.
+- Protected link direct download failed: export the chat/messages first, then use `tdl dl -f`.
 - No media found: explain whether the export matched no messages or only text-only messages; do not run download blindly.
-- Disk full: stop, report destination and available space if known, ask for a new destination or cleanup approval; do not delete files unprompted.
-- Clock/MTProto message ID errors: consider `--ntp pool.ntp.org`.
 
 ## Example Prompts
 

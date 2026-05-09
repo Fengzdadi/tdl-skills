@@ -90,7 +90,7 @@ tdl --ntp pool.ntp.org dl -u https://t.me/example/123
 
 Global config flags are not persisted by tdl. If a proxy is required, include `--proxy` in every command in the workflow: `login`, `chat ls`, and `dl`.
 
-When downloads fail with flood, rate-limit, or unstable network symptoms, retry with lower `-t` and `-l`, add `--delay` if appropriate, or use a proxy if the user already has one.
+When commands fail, classify the error with `troubleshooting.md` before retrying.
 
 Do not run multiple `tdl` network commands concurrently against the same namespace/storage. If tdl reports "Current database is used by another process", wait for the other process to finish, or intentionally use a separate namespace/storage.
 

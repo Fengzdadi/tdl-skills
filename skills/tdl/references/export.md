@@ -132,9 +132,10 @@ For tdl message export JSON, count messages with `.messages | length` when `jq` 
 
 ## Failure Recovery
 
-- Auth/session failure: use `references/auth-and-runtime.md`; do not collect credentials in chat.
-- Empty message export: suggest checking the chat URL, range, topic/reply ID, or filter expression.
+For command failures, classify with `troubleshooting.md` before retrying.
+
+Export-specific defaults:
+
+- Empty message export: report zero matches and suggest checking chat URL, range, topic/reply ID, or filter expression.
 - `MSG_ID_INVALID` with replies: ask for the exact channel post/comment link.
-- Proxy timeout/no response: verify proxy and include `--proxy` on every command.
-- Storage lock: wait for the other `tdl` process or intentionally use a separate namespace/storage.
-- Permission/private chat errors: ask the user to confirm they can access the chat in Telegram and are using the right namespace.
+- User export output is sensitive; summarize counts and path, not JSON contents.
