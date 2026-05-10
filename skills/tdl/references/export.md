@@ -130,6 +130,14 @@ Includes: media messages only / all messages / with content / raw
 
 For tdl message export JSON, count messages with `.messages | length` when `jq` is available. For user export JSON, inspect the top-level structure before counting; do not assume it matches message export shape.
 
+Prefer using `scripts/summarize_tdl_result.py` after completion when the export path is available:
+
+```bash
+skills/tdl/scripts/summarize_tdl_result.py --export-json exports/path/result.json
+```
+
+It detects message exports and user exports without calling Telegram.
+
 ## Failure Recovery
 
 For command failures, classify with `troubleshooting.md` before retrying.

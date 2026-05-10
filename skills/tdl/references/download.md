@@ -215,7 +215,13 @@ Skipped/failed: SUMMARY
 Resume: tdl dl ... --continue
 ```
 
-For tdl export JSON, count messages with `.messages | length` when `jq` is available. Count downloaded files and destination size when practical.
+Prefer using `scripts/summarize_tdl_result.py` after completion when local paths are available:
+
+```bash
+skills/tdl/scripts/summarize_tdl_result.py --export-json export.json --download-dir downloads/path
+```
+
+It summarizes message/user export JSON, file count, and total downloaded size without calling Telegram. If the script is unavailable, count messages with `.messages | length` when `jq` is available and count downloaded files/size with local filesystem tools.
 
 ## Empty Or Text-Only Results
 

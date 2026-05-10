@@ -12,6 +12,7 @@ Codex skill for operating the [`tdl`](https://docs.iyear.me/tdl/) Telegram Downl
 - `skills/tdl/references/export.md`: export-only message/user workflows, filters, ranges, topics/replies, output safety, and result reporting
 - `skills/tdl/references/auth-and-runtime.md`: install, login, namespaces, proxy, storage, Docker, and runtime guidance
 - `skills/tdl/references/troubleshooting.md`: failure classification and recovery for auth, proxy, storage, IDs, protected content, empty results, rate limits, disk, and version issues
+- `skills/tdl/scripts/summarize_tdl_result.py`: local-only summary tool for export JSON and download directories
 
 ## Usage
 
