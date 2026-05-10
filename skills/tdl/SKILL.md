@@ -13,6 +13,7 @@ Use `tdl` as the execution engine for Telegram Downloader workflows. This skill 
 
 - Download, archive, resume, ranges, topics/replies, message links, channel URLs, JSON exports, filters, templates, progress, and download recovery: read `references/download.md`.
 - Export-only tasks, message JSON archives, text-only records, raw message debugging, channel/forum ranges, and channel/group user lists: read `references/export.md`.
+- Read-only diagnostics, chat visibility, auth checks, namespace checks, proxy checks, and finding a target chat/channel: read `references/chat-diagnostics.md`.
 - Login, auth checks, namespaces, proxy, storage, installation, Docker, and runtime flags: read `references/auth-and-runtime.md`.
 - Any command failure, retry decision, proxy/auth/storage error, invalid IDs, flood wait, disk issue, or unexpected empty result: read `references/troubleshooting.md` before retrying.
 - Upload, forward, delete, join/leave, and other account-modifying workflows are not covered by this skill. Do not run them from this skill.
@@ -95,5 +96,6 @@ For private/protected chats, keep the report count-oriented unless the user asks
 
 - `references/download.md`: detailed download workflow, clarification prompts, export-first cases, flags, examples, result reporting, and failure recovery.
 - `references/export.md`: export-only message/user workflows, output safety, filters, ranges, topics/replies, and result reporting.
+- `references/chat-diagnostics.md`: read-only auth, proxy, namespace, chat list, and target chat diagnostics.
 - `references/auth-and-runtime.md`: install, login, namespace, proxy, storage, Docker, and runtime guidance.
 - `references/troubleshooting.md`: failure classification and recovery actions for auth, proxy, storage, IDs, protected content, empty results, rate limits, disk, and version issues.
