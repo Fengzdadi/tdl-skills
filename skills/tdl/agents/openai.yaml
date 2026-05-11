@@ -1,4 +1,4 @@
 interface:
   display_name: "tdl"
   short_description: "Route safe tdl Telegram Downloader workflows"
-  default_prompt: "Use $tdl to download, export, or resume Telegram media with the tdl CLI."
+  default_prompt: "Use $tdl to download, export, resume, back up, or migrate Telegram data with the tdl CLI."

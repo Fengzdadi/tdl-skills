@@ -1,6 +1,6 @@
 ---
 name: tdl
-description: Use when a user wants to operate the tdl Telegram Downloader CLI, especially to download, archive, resume, or export Telegram media/messages from t.me links, channel/chat URLs, protected/private chats, Telegram Desktop JSON exports, or tdl export JSON. Covers safe routing to download workflows, login/auth checks, namespaces, proxy/network setup including SOCKS5, storage/runtime flags, version compatibility, progress reporting, and sensitive Telegram data handling.
+description: Use when a user wants to operate the tdl Telegram Downloader CLI, especially to download, archive, resume, export Telegram media/messages, or back up, recover, or migrate tdl account data from t.me links, channel/chat URLs, protected/private chats, Telegram Desktop JSON exports, or tdl export JSON. Covers safe routing to download/export/account-data workflows, login/auth checks, namespaces, proxy/network setup including SOCKS5, storage/runtime flags, version compatibility, progress reporting, and sensitive Telegram data handling.
 ---
 
 # tdl
@@ -14,6 +14,7 @@ Use `tdl` as the execution engine for Telegram Downloader workflows. This skill 
 - Download, archive, resume, ranges, topics/replies, message links, channel URLs, JSON exports, filters, templates, progress, and download recovery: read `references/download.md`.
 - Export-only tasks, message JSON archives, text-only records, raw message debugging, channel/forum ranges, and channel/group user lists: read `references/export.md`.
 - Read-only diagnostics, chat visibility, auth checks, namespace checks, proxy checks, and finding a target chat/channel: read `references/chat-diagnostics.md`.
+- tdl account data backup, restore/recover, storage migration, namespace/session portability, and moving tdl between machines: read `references/account-data.md`.
 - Login, auth checks, namespaces, proxy, storage, installation, Docker, and runtime flags: read `references/auth-and-runtime.md`.
 - Any command failure, retry decision, proxy/auth/storage error, invalid IDs, flood wait, disk issue, or unexpected empty result: read `references/troubleshooting.md` before retrying.
 - Upload, forward, delete, join/leave, and other account-modifying workflows are not covered by this skill. Do not run them from this skill.
@@ -26,6 +27,7 @@ Use `tdl` as the execution engine for Telegram Downloader workflows. This skill 
 - Redact proxy credentials in summaries. Do not repeat `protocol://user:pass@host:port` unless the user explicitly needs the exact command and already supplied it.
 - For private/protected chats, summarize only counts, status, destination, and failures by default. Do not list private chat titles or filenames unless the user asks.
 - Confirm before running commands that may download large amounts of data, use `--takeout`, access private/protected chats, write to shared/external/broad destinations, or use high parallelism.
+- Confirm before running `tdl recover` or `tdl migrate`; they modify local tdl account/storage state.
 - Never delete downloads, storage, sessions, or task state unless the user explicitly requests cleanup.
 
 ## Runtime Setup
@@ -43,6 +45,9 @@ Use the local CLI as authority. If a flag is uncertain or the user may have an o
 tdl dl --help
 tdl chat export --help
 tdl login --help
+tdl backup --help
+tdl recover --help
+tdl migrate --help
 ```
 
 If a planned flag is not available locally, choose a compatible path or tell the user they need a newer `tdl`.
@@ -97,5 +102,6 @@ For private/protected chats, keep the report count-oriented unless the user asks
 - `references/download.md`: detailed download workflow, clarification prompts, export-first cases, flags, examples, result reporting, and failure recovery.
 - `references/export.md`: export-only message/user workflows, output safety, filters, ranges, topics/replies, and result reporting.
 - `references/chat-diagnostics.md`: read-only auth, proxy, namespace, chat list, and target chat diagnostics.
+- `references/account-data.md`: tdl backup, recover, migrate, storage selection, confirmations, and result reporting.
 - `references/auth-and-runtime.md`: install, login, namespace, proxy, storage, Docker, and runtime guidance.
 - `references/troubleshooting.md`: failure classification and recovery actions for auth, proxy, storage, IDs, protected content, empty results, rate limits, disk, and version issues.
