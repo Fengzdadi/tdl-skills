@@ -1,6 +1,6 @@
 ---
 name: tdl
-description: Use when a user wants to operate the tdl Telegram Downloader CLI, especially to download, archive, resume, export Telegram media/messages, or back up, recover, or migrate tdl account data from t.me links, channel/chat URLs, protected/private chats, Telegram Desktop JSON exports, or tdl export JSON. Covers safe routing to download/export/account-data workflows, login/auth checks, namespaces, proxy/network setup including SOCKS5, storage/runtime flags, version compatibility, progress reporting, and sensitive Telegram data handling.
+description: Use when a user wants to operate the tdl Telegram Downloader CLI, especially to download, archive, resume, export Telegram media/messages, upload local files to Telegram, forward Telegram messages, or back up, recover, or migrate tdl account data from t.me links, channel/chat URLs, protected/private chats, Telegram Desktop JSON exports, or tdl export JSON. Covers safe routing to download/export/upload/forward/account-data workflows, login/auth checks, namespaces, proxy/network setup including SOCKS5, storage/runtime flags, version compatibility, progress reporting, and sensitive Telegram data handling.
 ---
 
 # tdl
@@ -15,9 +15,11 @@ Use `tdl` as the execution engine for Telegram Downloader workflows. This skill 
 - Export-only tasks, message JSON archives, text-only records, raw message debugging, channel/forum ranges, and channel/group user lists: read `references/export.md`.
 - Read-only diagnostics, chat visibility, auth checks, namespace checks, proxy checks, and finding a target chat/channel: read `references/chat-diagnostics.md`.
 - tdl account data backup, restore/recover, storage migration, namespace/session portability, and moving tdl between machines: read `references/account-data.md`.
+- Uploading local files or directories to Telegram chats, Saved Messages, forum topics, or routed destinations: read `references/upload.md`.
+- Forwarding Telegram messages from links or export JSON to a destination chat/router, including dry runs, direct/clone mode, edits, silence, and grouped messages: read `references/forward.md`.
 - Login, auth checks, namespaces, proxy, storage, installation, Docker, and runtime flags: read `references/auth-and-runtime.md`.
 - Any command failure, retry decision, proxy/auth/storage error, invalid IDs, flood wait, disk issue, or unexpected empty result: read `references/troubleshooting.md` before retrying.
-- Upload, forward, delete, join/leave, and other account-modifying workflows are not covered by this skill. Do not run them from this skill.
+- Delete, join/leave, and other account-modifying workflows are not covered by this skill. Do not run them from this skill.
 
 ## Global Safety
 
@@ -28,6 +30,9 @@ Use `tdl` as the execution engine for Telegram Downloader workflows. This skill 
 - For private/protected chats, summarize only counts, status, destination, and failures by default. Do not list private chat titles or filenames unless the user asks.
 - Confirm before running commands that may download large amounts of data, use `--takeout`, access private/protected chats, write to shared/external/broad destinations, or use high parallelism.
 - Confirm before running `tdl recover` or `tdl migrate`; they modify local tdl account/storage state.
+- Confirm before running `tdl upload`; it sends local files to Telegram and may be visible to other people.
+- Run `tdl forward --dry-run` before real forwarding when practical. Confirm again before running real `tdl forward`; it sends or copies messages to Telegram destinations and may be visible to other people.
+- Never use `tdl upload --rm` unless the user explicitly asks to delete local files after successful upload.
 - Never delete downloads, storage, sessions, or task state unless the user explicitly requests cleanup.
 
 ## Runtime Setup
@@ -48,6 +53,8 @@ tdl login --help
 tdl backup --help
 tdl recover --help
 tdl migrate --help
+tdl upload --help
+tdl forward --help
 ```
 
 If a planned flag is not available locally, choose a compatible path or tell the user they need a newer `tdl`.
@@ -73,8 +80,8 @@ If auth is missing, guide the user to an interactive login method. See `referenc
 
 Before execution, make sure the command is specific enough:
 
-- Source is clear: message link, chat/channel URL plus selection criteria, JSON file, or export plan.
-- Destination is explicit or an acceptable local `downloads` default for small low-risk work.
+- Source/input is clear: message link, chat/channel URL plus selection criteria, JSON file, export plan, or local file/directory path.
+- Destination/output is explicit or an accepted default: local `downloads` for small low-risk downloads, or Saved Messages for upload only after the user agrees.
 - Any private/protected/large/shared/external/high-parallelism risk has been confirmed.
 - Any required proxy/namespace/storage choice has been carried through all commands.
 
@@ -103,5 +110,7 @@ For private/protected chats, keep the report count-oriented unless the user asks
 - `references/export.md`: export-only message/user workflows, output safety, filters, ranges, topics/replies, and result reporting.
 - `references/chat-diagnostics.md`: read-only auth, proxy, namespace, chat list, and target chat diagnostics.
 - `references/account-data.md`: tdl backup, recover, migrate, storage selection, confirmations, and result reporting.
+- `references/upload.md`: local file/directory uploads, destination confirmation, captions, topics, filters, deletion safety, and reporting.
+- `references/forward.md`: message forwarding, dry runs, destination confirmation, direct/clone mode, edits, silence, grouped messages, and retry safety.
 - `references/auth-and-runtime.md`: install, login, namespace, proxy, storage, Docker, and runtime guidance.
 - `references/troubleshooting.md`: failure classification and recovery actions for auth, proxy, storage, IDs, protected content, empty results, rate limits, disk, and version issues.

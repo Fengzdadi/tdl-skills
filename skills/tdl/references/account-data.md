@@ -175,4 +175,3 @@ Account-data-specific defaults:
 - Target storage locked: wait for the other tdl process to exit; do not run concurrent commands against the same storage.
 - Unknown storage driver or malformed `--to`: inspect `tdl migrate --help` and rebuild the storage string.
 - Recover/migrate uncertain outcome: stop and report the exact status; do not run a second recover/migrate blindly.
-- `write error: can't rename log file` under `~/.tdl/log`: treat as a local logging/sandbox warning if the command still exits successfully; report it briefly but do not retry solely for that warning.

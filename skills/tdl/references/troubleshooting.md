@@ -28,6 +28,7 @@ Use this reference whenever a `tdl` command fails or behaves unexpectedly. First
 | interrupted download | Previous task stopped before completion | Rerun same source/destination with `--continue`. |
 | user wants clean retry | Prior task state should be discarded | Confirm, then use `--restart`. |
 | disk full / write failure in destination | Destination filesystem lacks space or permission | Stop; report path and available space if known; ask for new destination or cleanup approval. Do not delete files unprompted. |
+| `write error: can't rename log file` under `~/.tdl/log` | Local logging path is not writable or sandbox blocks log rotation | If the command exits successfully, treat it as a non-fatal warning and report briefly. If it repeats while the command keeps running, stop and fix local permissions/sandbox before retrying. |
 | unknown flag / flag missing | Local tdl version does not support planned flag | Inspect `tdl <subcommand> --help`; choose compatible flags or tell user to update tdl. |
 | clock / MTProto message ID errors | Local clock drift | Consider `--ntp pool.ntp.org`. |
 
