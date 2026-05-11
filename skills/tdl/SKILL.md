@@ -1,6 +1,6 @@
 ---
 name: tdl
-description: Use when a user wants to operate the tdl Telegram Downloader CLI, especially to download, archive, resume, export Telegram media/messages, upload local files to Telegram, forward Telegram messages, or back up, recover, or migrate tdl account data from t.me links, channel/chat URLs, protected/private chats, Telegram Desktop JSON exports, or tdl export JSON. Covers safe routing to download/export/upload/forward/account-data workflows, login/auth checks, namespaces, proxy/network setup including SOCKS5, storage/runtime flags, version compatibility, progress reporting, and sensitive Telegram data handling.
+description: Use when a user wants to operate the tdl Telegram Downloader CLI, especially to download, archive, resume, export Telegram media/messages, upload local files to Telegram, forward Telegram messages, manage tdl extensions, or back up, recover, or migrate tdl account data from t.me links, channel/chat URLs, protected/private chats, Telegram Desktop JSON exports, or tdl export JSON. Covers safe routing to download/export/upload/forward/extension/account-data workflows, login/auth checks, namespaces, proxy/network setup including SOCKS5, storage/runtime flags, version compatibility, progress reporting, and sensitive Telegram data handling.
 ---
 
 # tdl
@@ -17,6 +17,7 @@ Use `tdl` as the execution engine for Telegram Downloader workflows. This skill 
 - tdl account data backup, restore/recover, storage migration, namespace/session portability, and moving tdl between machines: read `references/account-data.md`.
 - Uploading local files or directories to Telegram chats, Saved Messages, forum topics, or routed destinations: read `references/upload.md`.
 - Forwarding Telegram messages from links or export JSON to a destination chat/router, including dry runs, direct/clone mode, edits, silence, and grouped messages: read `references/forward.md`.
+- Managing tdl extensions, including listing, installing, upgrading, removing, private GitHub extension access, and running installed extension commands: read `references/extensions.md`.
 - Login, auth checks, namespaces, proxy, storage, installation, Docker, and runtime flags: read `references/auth-and-runtime.md`.
 - Any command failure, retry decision, proxy/auth/storage error, invalid IDs, flood wait, disk issue, or unexpected empty result: read `references/troubleshooting.md` before retrying.
 - Delete, join/leave, and other account-modifying workflows are not covered by this skill. Do not run them from this skill.
@@ -32,6 +33,7 @@ Use `tdl` as the execution engine for Telegram Downloader workflows. This skill 
 - Confirm before running `tdl recover` or `tdl migrate`; they modify local tdl account/storage state.
 - Confirm before running `tdl upload`; it sends local files to Telegram and may be visible to other people.
 - Run `tdl forward --dry-run` before real forwarding when practical. Confirm again before running real `tdl forward`; it sends or copies messages to Telegram destinations and may be visible to other people.
+- Confirm before installing, upgrading, removing, or running unknown `tdl` extensions. Extensions are external code and may change local state or contact networks.
 - Never use `tdl upload --rm` unless the user explicitly asks to delete local files after successful upload.
 - Never delete downloads, storage, sessions, or task state unless the user explicitly requests cleanup.
 
@@ -55,6 +57,7 @@ tdl recover --help
 tdl migrate --help
 tdl upload --help
 tdl forward --help
+tdl extension --help
 ```
 
 If a planned flag is not available locally, choose a compatible path or tell the user they need a newer `tdl`.
@@ -112,5 +115,6 @@ For private/protected chats, keep the report count-oriented unless the user asks
 - `references/account-data.md`: tdl backup, recover, migrate, storage selection, confirmations, and result reporting.
 - `references/upload.md`: local file/directory uploads, destination confirmation, captions, topics, filters, deletion safety, and reporting.
 - `references/forward.md`: message forwarding, dry runs, destination confirmation, direct/clone mode, edits, silence, grouped messages, and retry safety.
+- `references/extensions.md`: extension list/install/upgrade/remove, dry-run first, private GitHub token handling, and running installed extensions.
 - `references/auth-and-runtime.md`: install, login, namespace, proxy, storage, Docker, and runtime guidance.
 - `references/troubleshooting.md`: failure classification and recovery actions for auth, proxy, storage, IDs, protected content, empty results, rate limits, disk, and version issues.
