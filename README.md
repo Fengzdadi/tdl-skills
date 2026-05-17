@@ -19,9 +19,26 @@ Codex skill for operating the [`tdl`](https://docs.iyear.me/tdl/) Telegram Downl
 - `skills/tdl/references/troubleshooting.md`: failure classification and recovery for auth, proxy, storage, IDs, protected content, empty results, rate limits, disk, and version issues
 - `skills/tdl/scripts/summarize_tdl_result.py`: local-only summary tool for export JSON and download directories
 
+## Installation
+
+Install with the cross-agent `skills` CLI:
+
+```bash
+npx skills add Fengzdadi/tdl-skills
+```
+
+Or ask Codex directly:
+
+```text
+Install the Codex skill from:
+https://github.com/Fengzdadi/tdl-skills/tree/main/skills/tdl
+```
+
+Restart your agent after installation so the new skill is loaded.
+
 ## Usage
 
-Install or copy `skills/tdl` into your Codex skills directory, then ask Codex for a Telegram task, for example:
+After installing, ask your agent for a Telegram task, for example:
 
 ```text
 Use tdl to download the latest 50 messages from https://t.me/example.
